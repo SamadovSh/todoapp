@@ -1,7 +1,6 @@
-import attrs
 from django import forms
 
-from .models import TodoItem
+from tasks.models import TodoItem
 
 
 class AddTaskForm(forms.Form):
