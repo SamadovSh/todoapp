@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Зарегистрироваться{% endblock %}
+
+{% block main_content %}
+<div class="w3-card-4">
+  <div class="w3-container w3-brown">
+    <h2>Создать аккаунт</h2>
+    <p>Воспользуйтесь следующей формой:</p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Создать"></p>
+    </form>
+  </div>
+</div>
+{% endblock %}

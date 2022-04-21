@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Задачи на день{% endblock %}
+
+{% block extra_head %}
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+
+{% block main_content %}
+            <form class="w3-container " style="margin-left: 25%; width: 50%;" method="get">
+                <h2>Текущие задачи</h2>
+                {% for task in tasks %}
+                    <p>
+                    {% if task.is_completed %}
+                        <input class="w3-check" type="checkbox" checked="checked"
+                               disabled="disabled" data-uid={{ task.id }} />
+                        <a href="{% url 'tasks:details' task.id %}" class="completed"> {{ task }}</a>
+                    {% else %}
+                        <input class="w3-check checkbox2"  data-uid={{ task.id }} type="checkbox" />
+                        <a href="{% url 'tasks:details' task.id %}" > {{ task }}</a>
+                    {% endif %}
+                    <a href="{% url 'tasks:delete' task.id %}" style="float: right"><i class="material-icons" style="color: black;">delete</i></a>
+                    </p>
+                <hr>
+                {% endfor %}
+            </form>
+{% endblock  %}

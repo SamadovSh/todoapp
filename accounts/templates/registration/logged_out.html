@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Вы вышли{% endblock %}
+{% block main_content %}
+<div class="w3-container w3-brown">
+    <h2>Вы вышли!</h2>
+    <p>Сессия работы с сайтом завершена. Всегда можно
+    <a href="{% url 'login' %}" >Залогиниться</a> и вернуться обратно</p>
+</div>
+{% endblock %}

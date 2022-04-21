@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Задача {{ object.id }} {% endblock %}
+{% block extra_head %}
+<link rel="stylesheet"
+href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+crossorigin="anonymous">
+{% endblock %}
+
+{% block main_content %}
+<form class="w3-container" action="." method="post" style="margin-left: 25%; width: 50%;">
+    <h1>Задача</h1>
+    <p><b>Описание</b>: {{ object }}</p>
+    <ul>
+        <li>
+            {{ object.is_completed|yesno:"Выполнена,Не выполнена" }}
+        </li>
+        <li><i class="far fa-calendar-alt"></i> Создана: {{ object.created|date:"Y-M-d H:i" }}</li>
+        <li><i class="far fa-clock"></i> Последнее изменение: {{ object.updated|date:"Y-M-d H:i" }}</li>
+        <li><i class="far fa-edit"></i> <a href="{% url 'tasks:edit' pk=object.pk %}"
+                                                >Редактировать</a></li>
+    </ul>
+    <i class="fas fa-clipboard-list"></i> <a href="{% url 'tasks:list' %}">Назад к списку</a>
+</form>
+{% endblock %}

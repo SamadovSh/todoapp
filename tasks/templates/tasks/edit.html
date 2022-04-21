@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменить задачу{% endblock %}
+
+{% block main_content %}
+<form action="#" method="post" class="w3-container tasks-create " style="margin-left: 25%; width: 50%;">
+    <h1 class="w3-text-blue">Поменять задачу</h1>
+    {% csrf_token %}
+    {{ form }}
+    <p><button class="w3-btn w3-blue" type="submit">Сохранить</button></p>
+</form>
+{% endblock %}

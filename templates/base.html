@@ -1,0 +1,62 @@
+{% load static %}
+<html>
+    <head>
+        <title>{% block title %}MMM{% endblock %}</title>
+
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+    <body>
+    <div>
+        <div class="row">
+
+            <div class="side_bar col" style="margin: left-top">
+                {% block side_bar %}
+                    {% if user.is_authenticated %}
+                <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
+                      <button onclick="w3_close()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                      <a href="{% url 'tasks:list' %}" class="w3-bar-item w3-button">Задачи</a>
+                      <a href="{% url 'tasks:create' %}" class="w3-bar-item w3-button">Добавить задачу</a>
+                      <a href="{% url 'password_change' %}" class="w3-bar-item w3-button">Сменить пароль</a>
+                      <a href="{% url 'about-us' %}" class="w3-bar-item w3-button">О сайте</a>
+                      <a href="{% url 'logout' %}" class="w3-bar-item w3-button">Выйти</a>
+                </div>
+                <div class="w3-teal">
+                    <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+                    <div class="w3-container">
+                        <h1>My Page</h1>
+                    </div>
+                </div>
+                {% endif %}
+                {% endblock %}
+            </div>
+            <div class="w3-green w3-display-container" style="width: 50%; margin-left:25%;">
+                {% for message in messages %}
+                <span onclick="this.parentElement.style.display='none'"
+                class="w3-button w3-small w3-display-topright">&times;</span>
+                <h3>{{ message }}</h3>
+                {% endfor %}
+            </div>
+                {% block main_content %}
+                {% endblock %}
+
+
+        </div>
+    </div>
+    <script>
+function w3_open() {
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+    </body>
+</html>

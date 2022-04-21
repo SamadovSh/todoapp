@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Создать задачу{% endblock %}
+
+
+{% block main_content %}
+    <form action="." method="post" class="w3-container tasks-create " style="margin-left: 25%; width: 50%;">
+        <h2 class="w3-text-blue"><b>Создать задачу</b></h2>
+        {{ form }}
+        {% csrf_token %}
+        <button class="w3-btn w3-blue" type="submit">+</button>
+    </form>
+{% endblock %}
