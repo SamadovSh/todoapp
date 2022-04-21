@@ -12,7 +12,6 @@ from datetime import datetime
 
 
 def index(request):
-    print('sssss')
     return redirect('/accounts/login')
 
 
